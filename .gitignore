@@ -57,8 +57,7 @@ typings/
 .env
 
 # build directory
-app
-
+/app/
 .idea/
 /runtime/
 
