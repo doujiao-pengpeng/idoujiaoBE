@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^8.1.0",
+    "kcors": "^2.2.1",
     "koa-jwt": "^3.2.2",
     "think-cache": "^1.0.0",
     "think-cache-file": "^1.0.8",

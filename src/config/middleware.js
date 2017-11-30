@@ -1,5 +1,6 @@
 const path = require('path');
 const isDev = think.env === 'development';
+const cors = require('kcors');
 import jwtKoa from 'koa-jwt';
 
 module.exports = [
@@ -23,6 +24,16 @@ module.exports = [
     enable: !think.isCli,
     options: {
       debug: isDev
+    }
+  },
+  {
+    handle: cors,
+    options: {
+      origin: (ctx) => {
+        return ctx.header.origin;
+      },
+      credential: true,
+      allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
     }
   },
   {

@@ -9,6 +9,7 @@
         "isDev",
         "think",
         "env",
+        "cors",
         "module",
         "exports",
         "handle",
@@ -21,11 +22,16 @@
         "ROOT_PATH",
         "publicPath",
         "isCli",
-        "debug"
+        "debug",
+        "origin",
+        "ctx",
+        "header",
+        "credential",
+        "allowMethods"
     ],
-    "mappings": "AAEA;;;;;;AAFA,MAAMA,OAAOC,QAAQ,MAAR,CAAb;AACA,MAAMC,QAAQC,MAAMC,GAAN,KAAc,aAA5B;;;AAGAC,OAAOC,OAAP,GAAiB,CACf;AACEC,UAAQ,MADV;AAEEC,WAAS;AACPC,gBAAYP,KADL;AAEPQ,sBAAkBR;AAFX;AAFX,CADe,EAQf;AACEK,UAAQ,UADV;AAEEI,UAAQT,KAFV;AAGEM,WAAS;AACPI,UAAMZ,KAAKa,IAAL,CAAUV,MAAMW,SAAhB,EAA2B,KAA3B,CADC;AAEPC,gBAAY;AAFL;AAHX,CARe,EAgBf;AACER,UAAQ,OADV;AAEEI,UAAQ,CAACR,MAAMa,KAFjB;AAGER,WAAS;AACPS,WAAOf;AADA;AAHX,CAhBe,EAuBf;AACEK,UAAQ,SADV;AAEEC,WAAS;AAFX,CAvBe,EA2Bf;AACED,UAAQ,QADV;AAEEC,WAAS;AAFX,CA3Be,EA+Bf,OA/Be,EAgCf,YAhCe,CAAjB",
+    "mappings": "AAGA;;;;;;AAHA,MAAMA,OAAOC,QAAQ,MAAR,CAAb;AACA,MAAMC,QAAQC,MAAMC,GAAN,KAAc,aAA5B;AACA,MAAMC,OAAOJ,QAAQ,OAAR,CAAb;;;AAGAK,OAAOC,OAAP,GAAiB,CACf;AACEC,UAAQ,MADV;AAEEC,WAAS;AACPC,gBAAYR,KADL;AAEPS,sBAAkBT;AAFX;AAFX,CADe,EAQf;AACEM,UAAQ,UADV;AAEEI,UAAQV,KAFV;AAGEO,WAAS;AACPI,UAAMb,KAAKc,IAAL,CAAUX,MAAMY,SAAhB,EAA2B,KAA3B,CADC;AAEPC,gBAAY;AAFL;AAHX,CARe,EAgBf;AACER,UAAQ,OADV;AAEEI,UAAQ,CAACT,MAAMc,KAFjB;AAGER,WAAS;AACPS,WAAOhB;AADA;AAHX,CAhBe,EAuBf;AACEM,UAAQH,IADV;AAEEI,WAAS;AACPU,YAASC,GAAD,IAAS;AACf,aAAOA,IAAIC,MAAJ,CAAWF,MAAlB;AACD,KAHM;AAIPG,gBAAY,IAJL;AAKPC,kBAAc;AALP;AAFX,CAvBe,EAiCf;AACEf,UAAQ,SADV;AAEEC,WAAS;AAFX,CAjCe,EAqCf;AACED,UAAQ,QADV;AAEEC,WAAS;AAFX,CArCe,EAyCf,OAzCe,EA0Cf,YA1Ce,CAAjB",
     "file": "..\\..\\src\\config\\middleware.js",
     "sourcesContent": [
-        "const path = require('path');\nconst isDev = think.env === 'development';\nimport jwtKoa from 'koa-jwt';\n\nmodule.exports = [\n  {\n    handle: 'meta',\n    options: {\n      logRequest: isDev,\n      sendResponseTime: isDev\n    }\n  },\n  {\n    handle: 'resource',\n    enable: isDev,\n    options: {\n      root: path.join(think.ROOT_PATH, 'www'),\n      publicPath: /^\\/(static|favicon\\.ico)/\n    }\n  },\n  {\n    handle: 'trace',\n    enable: !think.isCli,\n    options: {\n      debug: isDev\n    }\n  },\n  {\n    handle: 'payload',\n    options: {}\n  },\n  {\n    handle: 'router',\n    options: {}\n  },\n  'logic',\n  'controller',\n  // {\n  //   handle: jwtKoa,\n  //   option: {}\n  // }\n];\n"
+        "const path = require('path');\nconst isDev = think.env === 'development';\nconst cors = require('kcors');\nimport jwtKoa from 'koa-jwt';\n\nmodule.exports = [\n  {\n    handle: 'meta',\n    options: {\n      logRequest: isDev,\n      sendResponseTime: isDev\n    }\n  },\n  {\n    handle: 'resource',\n    enable: isDev,\n    options: {\n      root: path.join(think.ROOT_PATH, 'www'),\n      publicPath: /^\\/(static|favicon\\.ico)/\n    }\n  },\n  {\n    handle: 'trace',\n    enable: !think.isCli,\n    options: {\n      debug: isDev\n    }\n  },\n  {\n    handle: cors,\n    options: {\n      origin: (ctx) => {\n        return ctx.header.origin;\n      },\n      credential: true,\n      allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'\n    }\n  },\n  {\n    handle: 'payload',\n    options: {}\n  },\n  {\n    handle: 'router',\n    options: {}\n  },\n  'logic',\n  'controller',\n  // {\n  //   handle: jwtKoa,\n  //   option: {}\n  // }\n];\n"
     ]
 }
