@@ -1,5 +1,12 @@
+var _koaJwt = require('koa-jwt');
+
+var _koaJwt2 = _interopRequireDefault(_koaJwt);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 const path = require('path');
 const isDev = think.env === 'development';
+
 
 module.exports = [{
   handle: 'meta',

@@ -1,5 +1,6 @@
 const path = require('path');
 const isDev = think.env === 'development';
+import jwtKoa from 'koa-jwt';
 
 module.exports = [
   {
@@ -33,5 +34,9 @@ module.exports = [
     options: {}
   },
   'logic',
-  'controller'
+  'controller',
+  // {
+  //   handle: jwtKoa,
+  //   option: {}
+  // }
 ];

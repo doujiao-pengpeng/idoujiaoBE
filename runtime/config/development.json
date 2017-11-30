@@ -5,9 +5,9 @@
   "startServerTimeout": 3000,
   "reloadSignal": "SIGUSR2",
   "processKillTimeout": 10000,
-  "enableAgent": false,
   "jsonpCallbackField": "callback",
   "jsonContentType": "application/json",
+  "jsonpContentType": "application/javascript",
   "errnoField": "errno",
   "errmsgField": "errmsg",
   "defaultErrno": 1000,
@@ -16,7 +16,7 @@
     "type": "file",
     "file": {
       "timeout": 86400000,
-      "cachePath": "C:\\Users\\pengpeng\\Desktop\\thinkjs3-demo\\runtime\\cache",
+      "cachePath": "C:\\Users\\pengpeng\\Desktop\\beans\\runtime\\cache",
       "pathDepth": 1,
       "gcInterval": 86400000
     }
@@ -26,13 +26,12 @@
     "mysql": {
       "logConnect": true,
       "logSql": true,
-      "database": "",
+      "database": "thinkjs_server",
       "prefix": "think_",
-      "encoding": "utf8",
-      "host": "127.0.0.1",
-      "port": "",
+      "host": "139.199.81.139",
+      "port": 3306,
       "user": "root",
-      "password": "root",
+      "password": "zp199621.",
       "dateStrings": true
     }
   },
@@ -42,15 +41,32 @@
       "cookie": {
         "name": "thinkjs"
       },
-      "sessionPath": "C:\\Users\\pengpeng\\Desktop\\thinkjs3-demo\\runtime\\session"
+      "sessionPath": "C:\\Users\\pengpeng\\Desktop\\beans\\runtime\\session"
     }
   },
   "view": {
     "type": "nunjucks",
     "nunjucks": {
-      "viewPath": "C:\\Users\\pengpeng\\Desktop\\thinkjs3-demo\\view",
+      "viewPath": "C:\\Users\\pengpeng\\Desktop\\beans\\view",
       "sep": "_",
       "extname": ".html"
+    }
+  },
+  "logger": {
+    "type": "console",
+    "console": {},
+    "file": {
+      "backups": 10,
+      "absolute": true,
+      "maxLogSize": 51200,
+      "filename": "C:\\Users\\pengpeng\\Desktop\\beans\\logs\\app.log"
+    },
+    "dateFile": {
+      "level": "ALL",
+      "absolute": true,
+      "pattern": "-yyyy-MM-dd",
+      "alwaysIncludePattern": true,
+      "filename": "C:\\Users\\pengpeng\\Desktop\\beans\\logs\\app.log"
     }
   }
 }

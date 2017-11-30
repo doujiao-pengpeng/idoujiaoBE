@@ -7,9 +7,9 @@
         "module",
         "exports"
     ],
-    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,EAAjB",
+    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,CACf,CAAC,0BAAD,EAA6B,cAA7B,EAA6C,MAA7C,CADe,CAAjB",
     "file": "..\\..\\src\\config\\router.js",
     "sourcesContent": [
-        "module.exports = [\n\n];\n"
+        "module.exports = [\n  [/\\/api\\/(\\w+)(?:\\/(\\d+))?/, 'api/:1?id=:2', 'rest']\n];\n"
     ]
 }

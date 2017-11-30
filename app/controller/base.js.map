@@ -8,11 +8,13 @@
         "exports",
         "think",
         "Controller",
-        "__before"
+        "__before",
+        "setCorsHeader",
+        "header"
     ],
-    "mappings": "AAAAA,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,UAApB,CAA+B;AAC9CC,aAAW,CAEV;AAH6C,CAAhD",
+    "mappings": ";;AAAAA,OAAOC,OAAP,GAAiB,cAAcC,MAAMC,UAApB,CAA+B;AACxCC,UAAN,GAAiB;AAAA;;AAAA;AACf,YAAKC,aAAL;AADe;AAEhB;;AAEDA,kBAAgB;AACd,SAAKC,MAAL,CAAY,6BAAZ,EAA2C,KAAKA,MAAL,CAAY,QAAZ,KAAyB,GAApE;AACA,SAAKA,MAAL,CAAY,8BAAZ,EAA4C,kBAA5C;AACA,SAAKA,MAAL,CAAY,+BAAZ,EAA6C,qBAA7C;AACA,SAAKA,MAAL,CAAY,kCAAZ,EAAgD,MAAhD;AACD;AAV6C,CAAhD",
     "file": "..\\..\\src\\controller\\base.js",
     "sourcesContent": [
-        "module.exports = class extends think.Controller {\n  __before() {\n\n  }\n};\n"
+        "module.exports = class extends think.Controller {\n  async __before() {\n    this.setCorsHeader();\n  }\n\n  setCorsHeader() {\n    this.header('Access-Control-Allow-Origin', this.header('origin') || '*');\n    this.header('Access-Control-Allow-Headers', 'x-requested-with');\n    this.header('Access-Control-Request-Method', 'GET,POST,PUT,DELETE');\n    this.header('Access-Control-Allow-Credentials', 'true');\n  }\n};\n"
     ]
 }
